@@ -52,10 +52,15 @@ class Question:
         #ques_list:問題の空リスト
         #listが何次元か読み取る。
         num_list = len(ques_list)
-        num_random = int(random.uniform(0,len(num_list)+1))
+        column_random = int(random.uniform(0,len(num_list)+1))#問題列指定
+        num_random =  int(random.uniform(0,len(num_list)+1))#問題の値を指定する
+        #for i in range(len(ques_list)):
+         #   for j in range(len(ques_list)):
+        #randomに指定された列番号だけ数字を複数代入する
         for i in range(len(ques_list)):
-            for j in range(len(ques_list)):
-                
+            ques_list[i][column_random] = num_random
+            if i == 
+        
                 
 
         
