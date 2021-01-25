@@ -1,6 +1,9 @@
 from PIL import Image
 import tkinter as tk
 import numpy as np
+import random
+
+
 class Question:
     def __init__(self):
         #self.map_data =
@@ -37,21 +40,25 @@ class Question:
         tk.PhotoImage(file="image/eightred.png"),
         tk.PhotoImage(file="image/ninered.png")       
         ]
-
-        #self.solve4 = [[[0,0,0,7],[0,7,0,8],[0,0,0,0],[5,0,0,0]],[[5,0,0,0],[0,0,7,0],[6,0,0,0],[0,0,6,0]],[[0,0,0,0],[0,0,0,5],[7,0,0,0],[0,8,6,0]]]
-        #self.solve4 = [[0,0,0,7],[0,7,0,8],[0,0,0,0],[5,0,0,0]]
-        #self.solve9 = []
         self.solve4 = [[],[],[],[]]
         self.solve9 = [[],[],[],[],[],[],[],[]]
     '''
     問題を生成する。その際、4x4,9x9のどちらかを判定する。
-    問題は各列に２文字以内の乱数を表示させる。
+    数独の問題を生成する。まず答えを算出し答えを算出した後ランダムに数字を残す(0に変えるものと数字を残すもの)
+    答えはリストになっており、0を代入していく.
     '''
-    def zero_cpint(self,num):
-        for i in range()
+
+    def question_build(self,ques_list):
+        #ques_list:問題の空リスト
+        #listが何次元か読み取る。
+        num_list = len(ques_list)
+        num_random = int(random.uniform(0,len(num_list)+1))
+        for i in range(len(ques_list)):
+            for j in range(len(ques_list)):
+                
+                
+
         
-
-
     #問題の正解を判定する
     def judgment(self,solve_data):
         pass
