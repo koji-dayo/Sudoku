@@ -46,22 +46,27 @@ class Question:
     問題を生成する。その際、4x4,9x9のどちらかを判定する。
     数独の問題を生成する。まず答えを算出し答えを算出した後ランダムに数字を残す(0に変えるものと数字を残すもの)
     答えはリストになっており、0を代入していく.
+    設定ファイルに事前に複数個、何列穴埋めするか設定しておく。
     '''
 
     def question_build(self,ques_list):
         #ques_list:問題の空リスト
         #listが何次元か読み取る。
         num_list = len(ques_list)
+        if num_list == 4:
+            re_num = 2
+        elif num_list == 9:
+            re_num = 6
         column_random = int(random.uniform(0,len(num_list)+1))#問題列指定
         num_random =  int(random.uniform(0,len(num_list)+1))#問題の値を指定する
-        #for i in range(len(ques_list)):
-         #   for j in range(len(ques_list)):
-        #randomに指定された列番号だけ数字を複数代入する
         for i in range(len(ques_list)):
             ques_list[i][column_random] = num_random
-            if i == 
+            if re_num == 2:
+                if i == 0 or i == 2:
+                    ques_list[i][column_random] = column_random
         
-                
+           elif re_num == 6:
+               if i == 0 or i == 2 or i == 3 or i == 5 or i == 6 i == 7:
 
         
     #問題の正解を判定する
