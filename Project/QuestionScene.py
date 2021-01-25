@@ -1,6 +1,6 @@
 from PIL import Image
 import tkinter as tk
-
+import numpy as np
 class Question:
     def __init__(self):
         #self.map_data =
@@ -39,8 +39,17 @@ class Question:
         ]
 
         #self.solve4 = [[[0,0,0,7],[0,7,0,8],[0,0,0,0],[5,0,0,0]],[[5,0,0,0],[0,0,7,0],[6,0,0,0],[0,0,6,0]],[[0,0,0,0],[0,0,0,5],[7,0,0,0],[0,8,6,0]]]
-        self.solve4 = [[0,0,0,7],[0,7,0,8],[0,0,0,0],[5,0,0,0]]
-        self.solve9 = []
+        #self.solve4 = [[0,0,0,7],[0,7,0,8],[0,0,0,0],[5,0,0,0]]
+        #self.solve9 = []
+        self.solve4 = [[],[],[],[]]
+        self.solve9 = [[],[],[],[],[],[],[],[]]
+    '''
+    問題を生成する。その際、4x4,9x9のどちらかを判定する。
+    問題は各列に２文字以内の乱数を表示させる。
+    '''
+    def zero_cpint(self,num):
+        for i in range()
+        
 
 
     #問題の正解を判定する
