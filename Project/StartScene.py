@@ -6,6 +6,7 @@ import configparser
 import yaml
 import MainScene
 
+#最初の起動画面
 title_logo = "image/gametitle.png"
 sudoku_name = None
 class Start(tk.Frame):
