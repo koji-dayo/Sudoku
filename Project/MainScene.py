@@ -42,6 +42,7 @@ class Game(tk.Frame):
         que_scene = QuestionScene.Question()
         self.map_data =  que_scene.question_build([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])
         self.img = que_scene.map_data4
+        print(self.map_data)
         self.num = len(self.map_data[random_num])
         print(type(self.map_data[random_num]))
         self.createWidgets()
