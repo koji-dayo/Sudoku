@@ -40,7 +40,10 @@ class Game(tk.Frame):
                 l_si_i = int(j)
         '''
         que_scene = QuestionScene.Question()
-        self.map_data =  que_scene.question_build([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])
+        #self.map_data =  que_scene.question_build([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])
+        que_scene.question_build([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])
+        self.map_data = que_scene.solve4
+
         self.img = que_scene.map_data4
         print(self.map_data)
         self.num = len(self.map_data[random_num])

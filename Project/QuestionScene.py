@@ -97,7 +97,9 @@ class Question:
                 print('hi')
                 #print(sudoku_dfs.question)
                 a = sudoku_dfs.question
-                return a
+                print(a)
+                self.solve4 = a
+                #return a
             #sudoku_dfs.solve(sudoku_dfs.question)
         elif num_list == 9:
             k_list = random.sample(k,3)
