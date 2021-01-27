@@ -75,7 +75,7 @@ class Question:
                 for j in range(num_list):
                     if ques_list[i][j] != 0:
                         ques_list[i][j] += 4
-            print(ques_list)
+            
 
             self.question = ques_list
             print(self.question)
