@@ -5,7 +5,7 @@ import numpy as np
 import configparser
 import yaml
 import MainScene
-
+#Start Menu
 #最初の起動画面
 title_logo = "image/gametitle.png"
 sudoku_name = None
@@ -33,7 +33,6 @@ class Start(tk.Frame):
             
     def newWindow(self,name):
         game = MainScene.Game(self.master,self.config[name])
-        #game.createWidgets()
         game.mainloop()
         
 def main():

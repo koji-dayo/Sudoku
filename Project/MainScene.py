@@ -50,6 +50,7 @@ class Game(tk.Frame):
         #print(self.img)
         #print(self.map_data)
         self.num = len(self.map_data[random_num])
+        print(self.num)
         #print(type(self.map_data[random_num]))
         self.createWidgets()
 
@@ -87,7 +88,7 @@ class Game(tk.Frame):
         x = int(e.x/60)
         y = int(e.y/60)
         if 0 <= x and x <= (self.num-1) and 0 <= y and y <= (self.num-1):
-            if self.map_data[y][x] <=6:#もし初期値の数字(与えられる問題の数字)じゃない場合、数字を書き込めるようにする。
+            if self.map_data[y][x] <=self.num:#もし初期値の数字(与えられる問題の数字)じゃない場合、数字を書き込めるようにする。
                 self.map_data[y][x] = self.chip
                 self.draw_map() 
     #数字出力(右側)
@@ -107,37 +108,13 @@ class Game(tk.Frame):
 
     #データ出力
     def put_data(self):
-        #正解を確認する
-        for y in range(0,self.num):
-            for x in range(0,self.num):
-                if self.map_data[y][x] == 7:
-                    self.map_data[y][x] = 1
-                if self.map_data[y][x] == 8:
-                    self.map_data[y][x] = 2
-                if self.map_data[y][x] == 9:
-                    self.map_data[y][x] = 3
-                if self.map_data[y][x] == 10:
-                    self.map_data[y][x] = 4
-                if self.map_data[y][x] == 11:
-                    self.map_data[y][x] = 5
-                if self.map_data[y][x] == 12:
-                    self.map_data[y][x] = 6
-        count = 0
-        for y in range(0,self.num):
-            if sum(self.map_data[y]) == 21:
-                if len(self.map_data[y]) == len(set(self.map_data[y])):
-                    count += 1
-        map_data_T = np.array(self.map_data).T.tolist()
-        for y in range(0,self.num):
-            if sum(map_data_T[y]) == 21:
-                if len(map_data_T[y]) == len(set(map_data_T[y])):
-                    count += 1
-
-        if count == 12:
+        print(self.question)
+        print(self.map_img)
+        if self.question == self.map_img:
             self.draw_txt("ゲームクリア",170,270,30,"pink")
-            
         else:
             self.draw_txt("不正解！！",170,270,30,"blue")
+
            
     def draw_txt(self,txt, x, y, siz, col): # 文字をウィンドウに表示する
         fnt = ("Times New Roman", siz, "bold")

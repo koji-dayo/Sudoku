@@ -47,6 +47,7 @@ class Question:
             [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
         self.solve_map4 = None
         self.question = None
+        self.ques = None
     '''
     問題を生成する。その際、4x4,9x9のどちらかを判定する。
     数独の問題を生成する。まず答えを算出し答えを算出した後ランダムに数字を残す(0に変えるものと数字を残すもの)
@@ -82,20 +83,7 @@ class Question:
             #print(ques_list)
             #ques_list[num_random][num_random] = int(random.uniform(0,len(num_list)+1))
             #深さ優先探索により答えを入手、答えが帰ってこない場合はやり直す。
-            sudoku_dfs = DFS.Sudoku_DFS()
-            sudoku_dfs.question = ques_list
-            sudoku_dfs.solve(sudoku_dfs.question,0,0)
-            sudoku_question = sudoku_dfs.question#答え
-            if  sudoku_question[0][0] == 0 :
-                #print('やり直し')
-                self.question_build(self.solve4)
-            else:     
-                #print('hi')
-                #print(sudoku_dfs.question)
-                a = sudoku_dfs.question
-                #print(a)
-                self.solve4 = a#答え
-                self.ques = ques_list#問題
+
         elif num_list == 9:
             k_list = random.sample(k,3)
             num = random.sample(k,3)
@@ -103,7 +91,22 @@ class Question:
                 ques_list[i][k_list[i]] = num 
                 ques_list[i][k_list[i]] = num
                 ques_list[i][k_list[i]] = num
-        
+
+    def dfs_build(self):
+        sudoku_dfs = DFS.Sudoku_DFS()
+        sudoku_dfs.question = self.question
+        sudoku_dfs.solve(sudoku_dfs.question,0,0)
+        sudoku_question = sudoku_dfs.question#答え
+        if  sudoku_question[0][0] == 0 :
+            #print('やり直し')
+            self.question_build(self.solve4)
+        else:     
+            #print('hi')
+            #print(sudoku_dfs.question)
+            a = sudoku_dfs.question
+            #print(a)
+            self.solve4 = a#答え
+            self.ques = self.question#問題
     #問題の正解を判定する
     def judgment(self,solve_data):
         pass
