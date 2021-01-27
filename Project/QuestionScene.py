@@ -2,6 +2,7 @@ from PIL import Image
 import tkinter as tk
 import numpy as np
 import random
+import DFS
 
 
 class Question:
@@ -41,7 +42,9 @@ class Question:
         tk.PhotoImage(file="image/ninered.png")       
         ]
         self.solve4 = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
-        self.solve9 = [[],[],[],[],[],[],[],[]]
+        self.solve9 = [[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[
+            0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
     '''
     問題を生成する。その際、4x4,9x9のどちらかを判定する。
     数独の問題を生成する。まず答えを算出し答えを算出した後ランダムに数字を残す(0に変えるものと数字を残すもの)
@@ -55,12 +58,39 @@ class Question:
         #ques_list:問題の空リスト
         #listが何次元か読み取る。
         num_list = len(ques_list)
+        '''
         if num_list == 4:
             re_num = 2
         elif num_list == 9:
-            re_num = 6
-        column_random = int(random.uniform(0,len(num_list)+1))#問題列指定
+            re_num = 9
+        '''
+        #column_random = int(random.uniform(0,len(num_list)+1))#問題列指定
         num_random =  int(random.uniform(0,len(num_list)+1))#問題の値を指定する
+        #ランダムに複数値を選択する
+        k = list(range(1,len(num_list)))
+
+        if num_list == 4:
+            k_list = random.sample(k,2)#複数の乱数が含まれる
+            num = random.sample(k,2)
+            ques_list[0][0] = int(random.uniform(0,len(num_list)+1))
+            ques_list[1][1] = int(random.uniform(0,len(num_list)+1))
+            ques_list[3][3] = int(random.uniform(0,len(num_list)+1))
+            ques_list[num_random][num_random] = int(random.uniform(0,len(num_list)+1))
+            #深さ優先探索により答えを入手、答えが帰ってこない場合はやり直す。
+            sudoku_dfs = DFS()
+            
+            #sudoku_dfs.solve(sudoku_dfs.question)
+
+
+        elif num_list == 9:
+            k_list = random.sample(k,3)
+            num = random.sample(k,3)
+            for i in range(num_list):
+                ques_list[i][k_list[i]] = num 
+                ques_list[i][k_list[i]] = num
+                ques_list[i][k_list[i]] = num
+
+        '''
         for i in range(len(ques_list)):
             ques_list[i][column_random] = num_random
             if re_num == 2:
@@ -69,7 +99,7 @@ class Question:
         
            elif re_num == 6:
                if i == 0 or i == 2 or i == 3 or i == 5 or i == 6 i == 7:
-
+        '''
         
     #問題の正解を判定する
     def judgment(self,solve_data):
