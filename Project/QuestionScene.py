@@ -45,6 +45,8 @@ class Question:
         self.solve9 = [[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[
             0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
+        self.solve_map4 = None
+        self.question = None
     '''
     問題を生成する。その際、4x4,9x9のどちらかを判定する。
     数独の問題を生成する。まず答えを算出し答えを算出した後ランダムに数字を残す(0に変えるものと数字を残すもの)
@@ -58,15 +60,6 @@ class Question:
         #ques_list:問題の空リスト
         #listが何次元か読み取る。
         num_list = len(ques_list)
-        '''
-        if num_list == 4:
-            re_num = 2
-        elif num_list == 9:
-            re_num = 9
-        '''
-        #column_random = int(random.uniform(0,len(num_list)+1))#問題列指定
-        #num_random =  int(random.uniform(0,len(num_list)+1))#問題の値を指定する
-        #ランダムに複数値を選択する
         k = list(range(1,num_list))
 
         if num_list == 4:
@@ -77,30 +70,32 @@ class Question:
             ques_list[1][1] = int(random.uniform(0,num_list+1))
             ques_list[2][1] = int(random.uniform(0,num_list+1))
             ques_list[3][3] = int(random.uniform(0,num_list+1))
+            #print(ques_list)
+            for i in range(num_list):
+                for j in range(num_list):
+                    if ques_list[i][j] != 0:
+                        ques_list[i][j] += 4
             print(ques_list)
+
+            self.question = ques_list
+            print(self.question)
+            #print(ques_list)
             #ques_list[num_random][num_random] = int(random.uniform(0,len(num_list)+1))
             #深さ優先探索により答えを入手、答えが帰ってこない場合はやり直す。
             sudoku_dfs = DFS.Sudoku_DFS()
             sudoku_dfs.question = ques_list
             sudoku_dfs.solve(sudoku_dfs.question,0,0)
             sudoku_question = sudoku_dfs.question#答え
-            #return :que_list(問題),sudoku_dfs.question(解答)
             if  sudoku_question[0][0] == 0 :
-                #sudoku_dfs.question.clear()
-                #ques_list.clear()
-                #print(ques_list)
-                #print(sudoku_dfs.question)
-                print('やり直し')
-                self.question_build([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])
-                #print('hi')
+                #print('やり直し')
+                self.question_build(self.solve4)
             else:     
-                print('hi')
+                #print('hi')
                 #print(sudoku_dfs.question)
                 a = sudoku_dfs.question
-                print(a)
-                self.solve4 = a
-                #return a
-            #sudoku_dfs.solve(sudoku_dfs.question)
+                #print(a)
+                self.solve4 = a#答え
+                self.ques = ques_list#問題
         elif num_list == 9:
             k_list = random.sample(k,3)
             num = random.sample(k,3)
