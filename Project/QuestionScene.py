@@ -65,23 +65,25 @@ class Question:
             re_num = 9
         '''
         #column_random = int(random.uniform(0,len(num_list)+1))#問題列指定
-        num_random =  int(random.uniform(0,len(num_list)+1))#問題の値を指定する
+        #num_random =  int(random.uniform(0,len(num_list)+1))#問題の値を指定する
         #ランダムに複数値を選択する
-        k = list(range(1,len(num_list)))
+        k = list(range(1,num_list))
 
         if num_list == 4:
             k_list = random.sample(k,2)#複数の乱数が含まれる
             num = random.sample(k,2)
-            ques_list[0][0] = int(random.uniform(0,len(num_list)+1))
-            ques_list[1][1] = int(random.uniform(0,len(num_list)+1))
-            ques_list[3][3] = int(random.uniform(0,len(num_list)+1))
-            ques_list[num_random][num_random] = int(random.uniform(0,len(num_list)+1))
+            ques_list[0][0] = int(random.uniform(0,num_list+1))
+            ques_list[0][2] = int(random.uniform(0,num_list+1))
+            ques_list[1][1] = int(random.uniform(0,num_list+1))
+            ques_list[3][3] = int(random.uniform(0,num_list+1))
+            #ques_list[num_random][num_random] = int(random.uniform(0,len(num_list)+1))
             #深さ優先探索により答えを入手、答えが帰ってこない場合はやり直す。
-            sudoku_dfs = DFS()
-            
+            sudoku_dfs = DFS.Sudoku_DFS()
+            sudoku_dfs.question = ques_list
+            sudoku_dfs.solve(sudoku_dfs.question,0,0)
+            print(sudoku_dfs.question)
+            return sudoku_dfs.question
             #sudoku_dfs.solve(sudoku_dfs.question)
-
-
         elif num_list == 9:
             k_list = random.sample(k,3)
             num = random.sample(k,3)
@@ -89,19 +91,13 @@ class Question:
                 ques_list[i][k_list[i]] = num 
                 ques_list[i][k_list[i]] = num
                 ques_list[i][k_list[i]] = num
-
-        '''
-        for i in range(len(ques_list)):
-            ques_list[i][column_random] = num_random
-            if re_num == 2:
-                if i == 0 or i == 2:
-                    ques_list[i][column_random] = column_random
-        
-           elif re_num == 6:
-               if i == 0 or i == 2 or i == 3 or i == 5 or i == 6 i == 7:
-        '''
         
     #問題の正解を判定する
     def judgment(self,solve_data):
         pass
 
+'''
+if __name__ == '__main__':
+    ques = Question()
+    ques.question_build([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])
+    '''
