@@ -65,12 +65,19 @@ class Question:
 
         if num_list == 4:
             k_list = random.sample(k,2)#複数の乱数が含まれる
-            num = random.sample(k,2)
+            num = random.sample(k,3)
+            print(num)
+            '''
             ques_list[0][1] = int(random.uniform(0,num_list+1))
             ques_list[0][2] = int(random.uniform(0,num_list+1))
             ques_list[1][1] = int(random.uniform(0,num_list+1))
             ques_list[2][1] = int(random.uniform(0,num_list+1))
             ques_list[3][3] = int(random.uniform(0,num_list+1))
+            '''
+            ques_list[0][1] = num[0]
+            ques_list[0][2] = num[1]
+            ques_list[1][3] = num[2]
+            ques_list[3][0] = num[0]
             #print(ques_list)
             for i in range(num_list):
                 for j in range(num_list):
