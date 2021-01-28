@@ -86,7 +86,8 @@ class Question:
             
 
             self.question = ques_list
-            print(self.question)
+            #self.dfs_build()
+            #print(self.question)
             #print(ques_list)
             #ques_list[num_random][num_random] = int(random.uniform(0,len(num_list)+1))
             #深さ優先探索により答えを入手、答えが帰ってこない場合はやり直す。
@@ -105,14 +106,15 @@ class Question:
         sudoku_dfs.solve(sudoku_dfs.question,0,0)
         sudoku_question = sudoku_dfs.question#答え
         if  sudoku_question[0][0] == 0 :
-            #print('やり直し')
+            print('やり直し')
             self.question_build(self.solve4)
-        else:     
-            #print('hi')
+        elif sudoku_question[0][0] != 0:     
+            print('hi')
             #print(sudoku_dfs.question)
             a = sudoku_dfs.question
-            #print(a)
+            print('答aえ'+str(a))
             self.solve4 = a#答え
+            print(a)
             self.ques = self.question#問題
     #問題の正解を判定する
     def judgment(self,solve_data):

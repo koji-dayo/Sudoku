@@ -46,6 +46,7 @@ class Game(tk.Frame):
         self.map_data = que_scene.question#表示用の問題
         print(self.map_data)
         self.question = que_scene.solve4#答え
+        print('答えは'+str(self.question))
         self.img = que_scene.map_data4#画像リスト
         #print(self.img)
         #print(self.map_data)
