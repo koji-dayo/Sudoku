@@ -8,12 +8,9 @@ import numpy as np
 
 class Game(tk.Frame):
     def __init__(self,master,size):
-        #master = tk.Tk()
-        #master.mainloop()
         super().__init__(master)
         self.pack()
         self.master = master
-        #self.mainloop()
         self.pack()
         self.width = size[0]
         self.height = size[0]
@@ -23,22 +20,6 @@ class Game(tk.Frame):
         #map_data = pd.read_csv(size[1])
         random_num = int(random.uniform(0,2))
         #self.map_question = map_data['question'][random_num]
-        #print(map_question)
-        #問題入手
-        #print(size)
-        '''
-        with open(size[1]) as f:
-            question = f.read().splitlines()
-        with open(size[2]) as f:
-            solve = f.read().splitlines()
-        #print(question[random_num])
-        #print(self.map_data[random_num])
-        #l_si_i = [int(s) for s in solve]
-        
-        for i in range(len(solve)):
-            for j in range(len(solve[i])):
-                l_si_i = int(j)
-        '''
         que_scene = QuestionScene.Question()
         #self.map_data =  que_scene.question_build([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])
         que_scene.question_build([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])
@@ -52,8 +33,10 @@ class Game(tk.Frame):
         print(self.map_data)
         # self.map_data = que_scene.question#表示用の問題
         #print(self.map_data)
-        self.question = que_scene.solve4#答え
-        #print('答えは'+str(self.question))
+        a = que_scene.dfs_build(self.map_img)
+        #self.question = que_scene.solve4#答え
+        print(self.map_data)
+        print('答えは'+str(a))
         self.img = que_scene.map_data4#画像リスト
         #print(self.img)
         #print(self.map_data)

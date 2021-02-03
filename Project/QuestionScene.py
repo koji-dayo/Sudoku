@@ -101,22 +101,23 @@ class Question:
                 ques_list[i][k_list[i]] = num
                 ques_list[i][k_list[i]] = num
 
-    def dfs_build(self):
+    def dfs_build(self,ques):
         sudoku_dfs = DFS.Sudoku_DFS()
-        sudoku_dfs.question = self.question
+        sudoku_dfs.question = ques
         sudoku_dfs.solve(sudoku_dfs.question,0,0)
         sudoku_question = sudoku_dfs.question#答え
         if  sudoku_question[0][0] == 0 :
             print('やり直し')
-            self.question_build(self.solve4)
+            self.dfs_build(self.solve4)
         elif sudoku_question[0][0] != 0:     
             print('hi')
             #print(sudoku_dfs.question)
             a = sudoku_dfs.question
-            print('答aえ'+str(a))
-            self.solve4 = a#答え
-            print(a)
-            self.ques = self.question#問題
+            print('答え'+str(a))
+            #self.question = a#答え
+            #print(a)
+            return a
+            #self.ques = self.question#問題
     #問題の正解を判定する
     def judgment(self,solve_data):
         pass
