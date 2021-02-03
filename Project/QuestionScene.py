@@ -79,13 +79,14 @@ class Question:
             ques_list[1][3] = num[2]
             ques_list[3][0] = num[0]
             #print(ques_list)
+            '''
             for i in range(num_list):
                 for j in range(num_list):
                     if ques_list[i][j] != 0:
                         ques_list[i][j] += 4
-            
+            '''
 
-            self.question = ques_list
+            self.ques = ques_list
             #self.dfs_build()
             #print(self.question)
             #print(ques_list)

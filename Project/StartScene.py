@@ -29,7 +29,7 @@ class Start(tk.Frame):
         for i in range(0,len(self.config['Sudoku_type_btn'])):
             self.btn = tk.Button(self.master,text=self.config['Sudoku_type_btn'][i],foreground='#ff0000',font=("", 20),width = 20,height=3,bg="black",command=partial(self.newWindow,self.config['Sudoku_name'][i]))
             self.btn.place(x=120,y=250+(i*100))
-            print(self.btn)
+            #print(self.btn)
             
     def newWindow(self,name):
         game = MainScene.Game(self.master,self.config[name])
